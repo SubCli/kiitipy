@@ -294,7 +294,8 @@ const ChainProvider: FC<ChainContextProps> = ({ children, createnewAccount }: Ch
         {
             const address = accounts[0];
             let userInfo = await fetchUserInfo(address);
-            const firstLogin = typeof userInfo === undefined;
+            console.log(userInfo);
+            const firstLogin = !userInfo;
             if (firstLogin)
             {
                 userInfo = await createUser({
