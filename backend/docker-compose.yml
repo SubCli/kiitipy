@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    platform: linux/amd64  # Chỉ định nền tảng
+    ports:
+      - "3306:3306"  # Cổng ánh xạ từ host tới container
+    environment:
+      - MYSQL_ROOT_PASSWORD=tIpY@2024
+      - MYSQL_DATABASE=tipy
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ptIpY@2024"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - DATABASE_HOST=mysql
+      - DATABASE_PORT=3306
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=tIpY@2024
+      - DATABASE_NAME=tipy
+    depends_on:
+      mysql:
+        condition: service_healthy  # Chờ đến khi MySQL khỏe mạnh  
+volumes:
+  mysql-data:

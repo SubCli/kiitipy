@@ -1,0 +1,1 @@
+{"version":3,"file":"link.provider.js","sourceRoot":"","sources":["../../../src/link/entities/link.provider.ts"],"names":[],"mappings":";;;AACA,+CAAqC;AACrC,qEAAgE;AACnD,QAAA,aAAa,GAAG;IAC3B;QACE,OAAO,EAAE,iBAAiB;QAC1B,UAAU,EAAE,CAAC,UAAsB,EAAE,EAAE,CAAC,UAAU,CAAC,aAAa,CAAC,kBAAI,CAAC;QACtE,MAAM,EAAE,CAAC,aAAa,CAAC;KACxB;IACD,GAAG,6BAAa;CACjB,CAAC"}

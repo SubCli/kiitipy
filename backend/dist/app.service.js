@@ -1,0 +1,42 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppService = void 0;
+const common_1 = require("@nestjs/common");
+let AppService = class AppService {
+    constructor() {
+        this.FAUCET_URL = 'https://faucet.kiivalidator.com/api/faucet';
+    }
+    getHello() {
+        return 'Hello World!';
+    }
+    async getTokenFromFaucet(account, chainId) {
+        try {
+            const url = `${this.FAUCET_URL}?address=${account}&chainId=${chainId}`;
+            console.log('Url : ', url);
+            const res = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                },
+            });
+            const val = await res.json();
+            console.log('Value : ', val);
+            return val;
+        }
+        catch (error) {
+            console.log('faucetTokens : ', error);
+            return null;
+        }
+    }
+};
+exports.AppService = AppService;
+exports.AppService = AppService = __decorate([
+    (0, common_1.Injectable)()
+], AppService);
+//# sourceMappingURL=app.service.js.map

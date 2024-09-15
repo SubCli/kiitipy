@@ -1,0 +1,30 @@
+import { Repository, DataSource } from 'typeorm';
+import { TransactionHistoryDto } from './dto/transaction-history.dto';
+import { CreateTransactionHistoryDto } from './dto/create-transaction-history.dto';
+import { TransactionHistory } from './entities/transaction-history.entity';
+import { TransactionHistoryUserInfoDto } from 'src/transaction-history/dto/transaction-history-userinfo.dto';
+import { UpdateTransactionHistoryDto } from './dto/update-transaction-history.dto';
+import { Source } from 'src/source/entities/source.entity';
+import { Link } from 'src/link/entities/link.entity';
+import { User } from 'src/user/entities/user.entity';
+import { UserDto } from 'src/user/dto/user.dto';
+import { RevenueBySourceDto } from 'src/transaction-history/dto/revenue-by-source.dto';
+export declare class TransactionHistoryService {
+    private transactionHistoryRepository;
+    private sourceRepository;
+    private linkRepository;
+    private userRepository;
+    private dataSource;
+    constructor(transactionHistoryRepository: Repository<TransactionHistory>, sourceRepository: Repository<Source>, linkRepository: Repository<Link>, userRepository: Repository<User>, dataSource: DataSource);
+    create(createTransactionHistoryDto: CreateTransactionHistoryDto): Promise<TransactionHistoryDto>;
+    findAll(): Promise<TransactionHistoryDto[]>;
+    findOne(id: number): Promise<TransactionHistoryDto>;
+    update(id: number, updateTransactionHistoryDto: UpdateTransactionHistoryDto): Promise<TransactionHistoryDto>;
+    remove(id: number): Promise<void>;
+    getDonationsToSource(sourceId: number): Promise<TransactionHistoryDto[]>;
+    getDonationsToLink(linkId: number): Promise<TransactionHistoryDto[]>;
+    getDonationsToUser(userId: number): Promise<TransactionHistoryUserInfoDto[]>;
+    getMonthRevenueOfSourceByLinkId(linkId: number): Promise<RevenueBySourceDto[]>;
+    getMostSenderUsers(userId: number, num: number): Promise<UserDto[]>;
+    getMonthRevenueOfAllSourceByUserId(userId: number): Promise<RevenueBySourceDto[]>;
+}
